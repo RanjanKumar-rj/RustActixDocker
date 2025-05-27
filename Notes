@@ -1,0 +1,62 @@
+////////////////////////////Docker/////////////////////////////////
+
+----------------------------Docker CLI----------------------------
+
+docker run <Container name/Id>
+docker ps -a      # list all containers (even stopped ones)
+docker rm <id>    # remove old container
+
+docker container prune      # to remove all stopped containers
+docker system prune	    # to remove all stopped containers and cleans image cache
+
+docker run -d <Container name/Id>       # To lauch in background
+
+docker create <Container Name>
+docker start -a <Container Id>           # With logs
+
+docker start <Container Id>         # Without logs
+docker logs <Container Id>          # To see the logs 
+
+docker stop <Container Id>      # To gracefull shutdown / SIGTERM signal is sent
+docker kill <Container Id>      # To immediately shutdown / SIGKILL signal is sent
+
+docker exec -it <Container Id> <Command>        # To execute commands in running containers
+docker exec -it <Container Id> sh               # To get command prompt in a container
+
+docker run -it <Container Name> sh              # To get command prompt immediately after the start
+
+// File name has to be always Dockerfile which is used to create docker image
+
+docker build .			# To build a docker image
+
+docker build -t <Your docker Id>/<project_name>:<version> .       # Tagging an image
+Ex : docker build -t ranjankumarrj/postnotify:latest .
+
+docker tag <Image Id> <New Name>            # Tagging an existing image
+
+docker commit -c 'CMD ["redis-server"]' <Container Id>              # To create image using existing container
+
+docker run -p 8080:8080 <image Id>              # Port mapping  -p <host_port>:<container_port>
+
+
+----------------------------Docker Compose CLI----------------------------
+
+docker compose : 
+* Separate CLI that gets installed along with Docker.
+* Used to start up multiple Docker containers at the same time and automatically connect them together. 
+* Automates some of the long-winded arguments we were passing to 'docker run'. 
+* Uses docker-compose.yml file.
+
+docker-compose up       # To build from docker-compose.yml 
+docker-compose down     # To stop
+
+docker-compose ps       # To know the status of the containers created by docker compose
+
+docker-compose up --build       # If you edit docker-compose.yml
+
+Restart Policies :
+* "no"  - Never attemp to restart this . container if it stops or crashes.
+* always    - If this container stops for any reason always attempt to restart it.
+* on-failure    - Only restart if the container stops with an error code.
+* unless-stopped    - Always restart unless we forcibly stop it.
+
