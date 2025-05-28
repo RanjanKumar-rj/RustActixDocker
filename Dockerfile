@@ -1,5 +1,5 @@
 # Use the official Rust image
-FROM rust:1.87-slim
+FROM rust:latest
 
 # Create a new directory inside the container 
 WORKDIR /usr/src/app
